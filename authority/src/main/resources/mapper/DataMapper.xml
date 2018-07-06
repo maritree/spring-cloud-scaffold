@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maritree.authority.buss.mapper.DataMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.maritree.authority.buss.entity.Data">
+        <result column="id" property="id"/>
+        <result column="data_code" property="dataCode"/>
+        <result column="data_name" property="dataName"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="data_path" property="dataPath"/>
+        <result column="data_type" property="dataType"/>
+        <result column="sort_id" property="sortId"/>
+        <result column="url" property="url"/>
+        <result column="data_short_name" property="dataShortName"/>
+        <result column="phone" property="phone"/>
+        <result column="fax" property="fax"/>
+        <result column="address" property="address"/>
+        <result column="level" property="level"/>
+        <result column="undeletable_flag" property="undeletableFlag"/>
+        <result column="comments" property="comments"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+</mapper>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.maritree.authority.buss.mapper.UserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.maritree.authority.buss.entity.User">
+        <id column="id" property="id"/>
+        <result column="user_name" property="userName"/>
+        <result column="login_name" property="loginName"/>
+        <result column="depart_id" property="departId"/>
+        <result column="sort_id" property="sortId"/>
+        <result column="password" property="password"/>
+        <result column="password_chg_times" property="passwordChgTimes"/>
+        <result column="user_level" property="userLevel"/>
+        <result column="employee_num" property="employeeNum"/>
+        <result column="user_mobile" property="userMobile"/>
+        <result column="user_email" property="userEmail"/>
+        <result column="user_status" property="userStatus"/>
+        <result column="comments" property="comments"/>
+        <result column="user_birthdate" property="userBirthdate"/>
+        <result column="user_sex" property="userSex"/>
+        <result column="user_idcard" property="userIdcard"/>
+        <result column="user_photo" property="userPhoto"/>
+        <result column="work_date" property="workDate"/>
+        <result column="work_duty" property="workDuty"/>
+        <result column="work_telephone" property="workTelephone"/>
+        <result column="party_id" property="partyId"/>
+        <result column="undeletable_flag" property="undeletableFlag"/>
+        <result column="create_time" property="createTime"/>
+        <result column="create_user" property="createUser"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="update_user" property="updateUser"/>
+    </resultMap>
+
+</mapper>
