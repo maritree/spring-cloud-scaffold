@@ -21,10 +21,10 @@ import java.util.Map;
 public interface AuthorityFeignService {
 
     @GetMapping(value = "/user/loadUserInfoByUsername")
-    Result<Map<String, Object>> getUserDetails(@RequestParam("loginName") String loginName);
+    Result<Map<String, Object>> getUserDetails(@RequestParam("userName") String userName);
 
-    @PostMapping("/groupResource/getResourceByGroups")
-    Result<List<Map<String, Object>>> getResourceByGroups(@RequestBody List<String> groups);
+    @PostMapping("/roleResource/getResourceByRoles")
+    Result<List<Map<String, Object>>> getResourceByRoles(@RequestBody List<String> roles);
 
 
 }

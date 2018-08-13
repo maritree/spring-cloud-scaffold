@@ -10,8 +10,6 @@ import org.springframework.util.AntPathMatcher;
 import org.springframework.util.CollectionUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -27,12 +25,13 @@ public class AuthorityService {
         System.out.println(request.getRequestURI());
         Object principal = auth.getPrincipal();
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = (List<SimpleGrantedAuthority>) auth.getAuthorities();
-        Result<List<Map<String, Object>>> result = authorityFeignService.getResourceByGroups(simpleGrantedAuthorities.stream().map(SimpleGrantedAuthority::getAuthority).collect(Collectors.toList()));
+        Result<List<Map<String, Object>>> result = authorityFeignService.getResourceByRoles(simpleGrantedAuthorities.stream().map(SimpleGrantedAuthority::getAuthority).collect(Collectors.toList()));
         List<Map<String, Object>> resultData = result.getData();
         if (!CollectionUtils.isEmpty(resultData)) {
             List<String> permittedUrls = resultData.stream()
-                    .map(stringObjectMap -> (String) stringObjectMap.get("requestUrl"))
+                    .map(stringObjectMap -> (String) stringObjectMap.get("url"))
                     .collect(Collectors.toList());
+            System.out.println(permittedUrls);
             if (permittedUrls.contains(request.getRequestURI())) {
                 return true;
             }

@@ -36,7 +36,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint, Se
         //返回json格式的信息
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json");
-        httpServletResponse.setStatus(200);
+        httpServletResponse.setStatus(401);
         String message = "用户没有授权";
         if (e instanceof BadCredentialsException) {
             message = "用户名或密码错误";

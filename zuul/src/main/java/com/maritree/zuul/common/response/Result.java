@@ -63,6 +63,11 @@ public class Result<T> {
                 .setCode(ResultCode.FAIL)
                 .setMessage(message);
     }
-
+    public static <T> Result<T> genResult(ResultCode resultCode, String message, T data) {
+        return new Result()
+                .setCode(resultCode)
+                .setMessage(message)
+                .setData(data);
+    }
 
 }

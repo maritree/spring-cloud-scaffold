@@ -34,9 +34,9 @@ public class JwtUser implements UserDetails {
     // 写一个能直接使用user创建jwtUser的构造器
     public JwtUser(Map<String, Object> userMap) {
         id = (String) userMap.get("id");
-        username = (String) userMap.get("loginName");
+        username = (String) userMap.get("userName");
         password = (String) userMap.get("password");
-        List<SimpleGrantedAuthority> simpleGrantedAuthorities = ((List<String>) userMap.get("group")).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
+        List<SimpleGrantedAuthority> simpleGrantedAuthorities = ((List<String>) userMap.get("roles")).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
         authorities = simpleGrantedAuthorities;
     }
 

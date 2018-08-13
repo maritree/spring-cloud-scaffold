@@ -1,14 +1,16 @@
 package com.maritree.authority.buss.controller;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.maritree.authority.buss.entity.GroupUser;
 import com.maritree.authority.buss.entity.User;
-import com.maritree.authority.buss.service.GroupUserService;
+import com.maritree.authority.buss.entity.UserRole;
+import com.maritree.authority.buss.service.UserRoleService;
 import com.maritree.authority.buss.service.UserService;
 import com.maritree.authority.common.response.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.Serializable;
@@ -18,10 +20,10 @@ import java.util.stream.Collectors;
 
 
 /**
- * 系统用户表,loginname和departid唯一 RestFul接口
+ * RestFul接口
  *
  * @author maritree
- * @since 2018-06-29
+ * @since 2018-08-11
  */
 @RestController
 @RequestMapping("/user")
@@ -31,11 +33,16 @@ public class UserController {
     @Autowired
     UserService userService;
     @Autowired
-    GroupUserService groupUserService;
+    UserRoleService userRoleService;
 
+    @Bean
+    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @PostMapping("/insert")
     public Object insert(@RequestBody User user) {
+        user.setPassword(bCryptPasswordEncoder().encode(user.getPassword()));
         userService.insert(user);
         return Result.genSuccessResult();
     }
@@ -60,17 +67,19 @@ public class UserController {
     }
 
     @GetMapping("/loadUserInfoByUsername")
-    public Object loadUserInfoByUsername(@RequestParam String loginName) {
-        EntityWrapper<User> userEntityWrapper = new EntityWrapper<>();
-        userEntityWrapper.eq("login_name", loginName);
-        Map<String, Object> userMap = userService.selectMap(userEntityWrapper);
-
-        EntityWrapper<GroupUser> groupUserEntityWrapper = new EntityWrapper<>();
-        groupUserEntityWrapper.eq("user_id", userMap.get("id"));
-        List<GroupUser> groupUserList = groupUserService.selectList(groupUserEntityWrapper);
-        userMap.put("group", groupUserList.stream().map(GroupUser::getGroupId).collect(Collectors.toList()));
-        return Result.genSuccessResult(userMap);
+    public Result<Map<String, Object>> loadUserInfoByUsername(@RequestParam String userName) {
+        try {
+            EntityWrapper<User> userEntityWrapper = new EntityWrapper<>();
+            userEntityWrapper.eq("user_name", userName);
+            Map<String, Object> userMap = userService.selectMap(userEntityWrapper);
+            EntityWrapper<UserRole> userRoleEntityWrapper = new EntityWrapper<>();
+            userRoleEntityWrapper.eq("user_id", userMap.get("id"));
+            List<UserRole> userRoleList = userRoleService.selectList(userRoleEntityWrapper);
+            userMap.put("roles", userRoleList.stream().map(UserRole::getRoleId).collect(Collectors.toList()));
+            return Result.genSuccessResult(userMap);
+        } catch (Exception e) {
+            return Result.genFailResult("no such user");
+        }
     }
-
 }
 

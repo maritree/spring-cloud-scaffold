@@ -1,18 +1,17 @@
 package com.maritree.authority.buss.mapper;
 
+import com.maritree.authority.buss.entity.RoleResource;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.maritree.authority.buss.entity.Data;
 import org.apache.ibatis.annotations.Mapper;
-
 /**
  * <p>
- * Mapper 接口
+ *  Mapper 接口
  * </p>
  *
  * @author maritree
- * @since 2018-06-29
+ * @since 2018-08-11
  */
 @Mapper
-public interface DataMapper extends BaseMapper<Data> {
+public interface RoleResourceMapper extends BaseMapper<RoleResource> {
 
 }

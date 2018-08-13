@@ -22,7 +22,7 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
         //返回json格式的信息
         httpServletResponse.setCharacterEncoding("UTF-8");
         httpServletResponse.setContentType("application/json");
-        httpServletResponse.setStatus(200);
+        httpServletResponse.setStatus(401);
         httpServletResponse.getWriter().write(Result.genFailResult("没有访问权限").toString());
     }
 }

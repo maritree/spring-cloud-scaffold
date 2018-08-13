@@ -22,9 +22,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private AuthorityFeignService authorityFeignService;
 
     @Override
-    public UserDetails loadUserByUsername(String loginName) throws UsernameNotFoundException {
-        Result<Map<String, Object>> result = authorityFeignService.getUserDetails(loginName);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        Result<Map<String, Object>> result = authorityFeignService.getUserDetails(userName);
         Map<String, Object> userMap = result.getData();
+        if (userMap == null || userMap.isEmpty()) {
+            throw new UsernameNotFoundException("未找到用户");
+        }
         return new JwtUser(userMap);
     }
 

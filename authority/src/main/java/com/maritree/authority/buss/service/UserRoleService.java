@@ -1,7 +1,7 @@
 package com.maritree.authority.buss.service;
 
-import com.maritree.authority.buss.entity.User;
-import com.maritree.authority.buss.mapper.UserMapper;
+import com.maritree.authority.buss.entity.UserRole;
+import com.maritree.authority.buss.mapper.UserRoleMapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
  * @since 2018-08-11
  */
 @Service
-public class UserService extends ServiceImpl<UserMapper, User> {
+public class UserRoleService extends ServiceImpl<UserRoleMapper, UserRole> {
 
 }
 

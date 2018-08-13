@@ -2,6 +2,7 @@ package com.maritree.authority.buss.controller;
 
 import com.maritree.authority.buss.entity.Resource;
 import com.maritree.authority.buss.service.ResourceService;
+
 import com.maritree.authority.common.response.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,10 +14,12 @@ import java.util.List;
 
 
 /**
- * 系统资源表 RestFul接口
+ *
+ *  RestFul接口
+ *
  *
  * @author maritree
- * @since 2018-06-29
+ * @since 2018-08-11
  */
 @RestController
 @RequestMapping("/resource")
@@ -39,7 +42,6 @@ public class ResourceController {
         return Result.genSuccessResult();
 
     }
-
     @PostMapping("/update")
     public Object update(@RequestBody Resource resource) {
         resourceService.updateById(resource);

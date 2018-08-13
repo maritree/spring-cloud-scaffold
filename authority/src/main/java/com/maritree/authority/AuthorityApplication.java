@@ -5,11 +5,12 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableDiscoveryClient
+@EnableSwagger2
 @MapperScan(basePackages = {"com.maritree.authority.mapper"})
-@ComponentScan(basePackages = {"com.maritree.authority"})
 
 public class AuthorityApplication {
 
